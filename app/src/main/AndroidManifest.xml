@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='utf-8'?>
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="Payed_ZEFF"
+        android:theme="@style/AppTheme"
+        android:supportsRtl="true">
+
+        <service
+            android:name=".MyService"
+            android:exported="false" />
+
+        <activity
+			android:name=".Platform1"
+			android:label="Payed_ZEFF"
+			android:screenOrientation="landscape"
+			android:theme="@style/AppTheme"
+			android:windowSoftInputMode="adjustPan"
+				android:exported="true"
+			android:fitsSystemWindows="true">
+
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN"/>
+				<category android:name="android.intent.category.LAUNCHER"/>
+			</intent-filter>
+
+		</activity>
+
+        <meta-data
+            android:name="android.max_aspect"
+            android:value="4.0"/>
+
+    </application>
+
+</manifest>
+

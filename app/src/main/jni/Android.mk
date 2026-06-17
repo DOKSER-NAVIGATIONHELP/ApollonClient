@@ -1,0 +1,41 @@
+LOCAL_PATH := $(call my-dir)
+MAIN_LOCAL_PATH := $(call my-dir)
+include $(CLEAR_VARS)
+
+LOCAL_MODULE := libdobby
+LOCAL_SRC_FILES := $(LOCAL_PATH)/libraries/$(TARGET_ARCH_ABI)/libdobby.a
+include $(PREBUILT_STATIC_LIBRARY)
+include $(CLEAR_VARS)
+
+
+LOCAL_MODULE    := ReverseSigma
+
+LOCAL_CFLAGS := -w -s -Wno-error=format-security -fvisibility=hidden -fpermissive -fexceptions
+LOCAL_CPPFLAGS := -w -s -Wno-error=format-security -fvisibility=hidden -std=c++17
+LOCAL_CPPFLAGS += -Wno-error=c++11-narrowing -fpermissive -Wall -fexceptions
+LOCAL_LDFLAGS += -Wl,--gc-sections,--strip-all,-llog
+LOCAL_LDLIBS := -lz -landroid -lEGL -lGLESv2
+LOCAL_ARM_MODE := thumb
+
+LOCAL_C_INCLUDES += $(LOCAL_PATH)
+LOCAL_C_INCLUDES += $(LOCAL_PATH)/Includes
+LOCAL_C_INCLUDES += $(LOCAL_PATH)/CustomGL
+
+LOCAL_STATIC_LIBRARIES := libdobby
+
+LOCAL_SRC_FILES := main.cpp \
+    KittyMemory/KittyMemory.cpp \
+    KittyMemory/MemoryPatch.cpp \
+    KittyMemory/MemoryBackup.cpp \
+    KittyMemory/KittyUtils.cpp \
+    KittyScanner/KittyMemory_new.cpp \
+    KittyScanner/KittyScanner.cpp \
+    KittyScanner/KittyUtils.cpp \
+    Substrate/hde64.c \
+	Substrate/SubstrateDebug.cpp \
+	Substrate/SubstrateHook.cpp \
+	Substrate/SubstratePosixMemory.cpp \
+	Arm64/And64InlineHook.cpp \
+	ENCRYPT/oxorany.cpp \
+
+include $(BUILD_SHARED_LIBRARY)
